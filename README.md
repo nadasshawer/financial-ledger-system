@@ -1,4 +1,4 @@
-# ⚙️ Flux: High-Performance Financial Management System
+# ⚙️ Flux: Financial Management System
 
 <p align="left">
   <img src="https://img.shields.io/badge/Status-In%20Development-orange?style=for-the-badge&logo=git" />
@@ -116,9 +116,9 @@ LedgerCore follows a modular design to separate concerns:
 ## 📈 Roadmap
 
 - [x] **Milestone 1:** Core Inheritance & Memory-Efficient Setters
-- [x] **Milestone 2:** Native Bridge Implementation & Type Conversion
-- [x] **Milestone 3:** SQLite Integration & Persistence Layer
-- [x] **Milestone 4:** Full Dynamic Reporting & Analytics Dashboard
+- [ ] **Milestone 2:** Native Bridge Implementation & Type Conversion
+- [ ] **Milestone 3:** SQLite Integration & Persistence Layer
+- [ ] **Milestone 4:** Full Dynamic Reporting & Analytics Dashboard
 
 ---
 
