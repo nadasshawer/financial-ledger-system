@@ -1,10 +1,10 @@
 # ⚙️ Flux: Financial Management System
 
 <p align="left">
-  <img src="https://img.shields.io/badge/Status-In%20Development-80ed99?style=for-the-badge&logo=git&logoColor=white" />
-  <img src="https://img.shields.io/badge/Language-C%2B%2B20-48cae4?style=for-the-badge&logo=cplusplus&logoColor=white" />
-  <img src="https://img.shields.io/badge/Interface-TUI-b79ced?style=for-the-badge&logo=gnometerminal&logoColor=white" />
-  <img src="https://img.shields.io/badge/Platform-Universal-caf0f8?style=for-the-badge&logo=target&logoColor=white" />
+  <img src="https://img.shields.io/badge/Status-In%20Development-ffb347?style=for-the-badge&logo=git&logoColor=white" />
+  <img src="https://img.shields.io/badge/Language-C%2B%2B20-4facfe?style=for-the-badge&logo=cplusplus&logoColor=white" />
+  <img src="https://img.shields.io/badge/Interface-TUI-52b788?style=for-the-badge&logo=gnometerminal&logoColor=white" />
+  <img src="https://img.shields.io/badge/Platform-Universal-ce9ffc?style=for-the-badge&logo=target&logoColor=white" />
 </p>
 
 **Flux** is a high-performance financial system powered by a robust **C++ backend**. Designed with a "Systems-First" philosophy, Flux treats financial data with the precision of a low-level engine. By strictly decoupling the core logic from the interface, it provides a high-speed **Textual User Interface (TUI)** that delivers extreme memory efficiency and data integrity without the bloat of traditional graphical frameworks.
@@ -72,7 +72,8 @@ make
 
 ### 1. Terminal-Native Interface (TUI)
 
-Flux utilizes a professional terminal interface that provides real-time feedback and navigation. By staying in the command line, Flux ensures low system resource usage and high responsiveness.
+- Flux utilizes a professional terminal interface that provides real-time feedback and navigation.
+- By staying in the command line, Flux ensures low system resource usage and high responsiveness.
 
 ### 2. Strict Memory-Efficient Validation
 
@@ -83,7 +84,10 @@ Every piece of data passes through a **C++ Validation Layer** before being proce
 
 ### 3. Modular "Headless" Design
 
-The C++ core is entirely decoupled from the TUI. The logic is built using functions and classes that return data, allowing the engine to be portable and easily integrated into different environments in the future.
+- The C++ core is entirely decoupled from the TUI.
+- The logic is built using functions and classes that return data, allowing the engine to be portable and easily integrated into different environments in the future.
+
+---
 
 ## 🏗️ Technical Architecture
 
