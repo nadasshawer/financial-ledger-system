@@ -1,12 +1,27 @@
-# ⚙️ Flux: High-Performance Financial Management System
+# ⚙️ Flux: Financial Management System
 
 <p align="left">
-  <img src="https://img.shields.io/badge/Status-In%20Development-orange?style=for-the-badge&logo=git" />
+  <img src="https://img.shields.io/badge/Language-C%2B%2B20-6272a4?style=for-the-badge&logo=cplusplus&logoColor=white" />
+  <img src="https://img.shields.io/badge/Interface-TUI-ff79c6?style=for-the-badge&logo=gnometerminal&logoColor=white" />
+  <img src="https://img.shields.io/badge/Platform-Universal-bd93f9?style=for-the-badge&logo=target&logoColor=white" />
 </p>
 
-**LedgerCore** is a hybrid financial management system built with a "Systems-First" philosophy. It features a compiled C++ core for precision calculations and strict data validation, seamlessly bridged to a Node.js dashboard. It’s designed for users who need a robust, memory-efficient way to manage wealth without the overhead of standard monolithic apps.
+**Flux** is a professional-grade financial engine powered by a robust **C++ backend**. Designed with a "Systems-First" philosophy, Flux treats financial data with the precision of a low-level engine. By strictly decoupling the core logic from the interface, it provides a high-speed **Textual User Interface (TUI)** that delivers extreme memory efficiency and data integrity without the bloat of traditional graphical frameworks.
 
-_This project is in its early stages. The C++ core is stable, but the Node.js Bridge is still being developed._
+## ✨ My Inspiration
+
+Flux isn't just a project to me, it’s actually my very first 'Deep Dive' into the world of programming! I built this as my first complete C++ project because I was tired of just scratching the surface. I wanted to dive deep, break things, and understand what’s actually happening under the hood of a computer.
+
+This project became the foundation of everything I know today. It’s what inspired me to keep exploring, keep building, and eventually dive head-first into the world of Systems and Software Engineering. It’s definitely come a long way from my early experiments, and looking at this code always reminds me of how much I’ve leveled up since I first started typing `int main()`. It’s messy in the memories, but clean in the code!
+
+#### Biggest concepts I learned:
+
+While building Flux, I didn't just stick to the basics. I pushed myself to use the "scary" stuff that actually makes C++ powerful:
+
+- **Member Function Pointers:** For creating flexible, dynamic logic without the bulk
+- **Templates:** To keep the engine generic, reusable, and type-safe
+- **Manual Memory Management:** Learning to respect the heap and the stack!
+- **Object-Oriented Architecture:** Transitioning from "scripts" to a modular, scalable system
 
 ## 🚀 Quick Start
 
@@ -17,18 +32,16 @@ git clone https://github.com/nadasshawer/financial-ledger-engine.git
 cd financial-ledger-engine
 ```
 
-**Build the Engine:** This will use the Makefile to compile the C++ source and prepare the binaries for the bridge.
+**Build the Engine:**
 
 ```bash
 make
 ```
 
-**Launch the Dashboard:**
+**Launch the TUI:**
 
 ```bash
-cd web
-npm install
-npm start
+./bin/flux
 ```
 
 ---
@@ -45,84 +58,52 @@ npm start
 │
 ├── src/                     # The Engine: Core C++ Logic (.cpp)
 │   ├── auth/                # User authentication implementation
+│   ├── core/                # Main TUI Loop & State Management
 │   ├── models/              # Finance class logic & inheritance
 │   └── validation/          # Strict memory-efficient checks
 │
-├── native/                  # The Translator: JavaScript-to-C++ Bridge
-│   └── bridge/              # validation_bridge.cpp (Node Addon)
-│
-├── web/                     # The Dashboard: Node.js & UI
-│   ├── public/              # Modern CSS & Client-side JS
-│   └── views/               # EJS Templates for data rendering
-│
 ├── docs/                    # Technical Documentation
-│   └── bridging/            # Bridging strategy + architectural challenges
+│   └── architecture.md      # TUI design & data flow strategy
 │
 ├── bin/                     # Compiled binaries
 ├── Makefile                 # Automated build instructions
 └── README.md                # You're here!
 ```
 
----
-
 ## 🛠️ Key Features
 
-### 1. Hybrid Architecture (The Bridge)
+### 1. Terminal-Native Interface (TUI)
 
-Unlike standard web apps, LedgerCore utilizes a **Native C++ Bridge**. This allows the Node.js frontend to offload heavy business logic and financial calculations to a compiled binary, ensuring near-instant execution and type-safety at the engine level.
+Flux utilizes a professional terminal interface that provides real-time feedback and navigation. By staying in the command line, Flux ensures low system resource usage and high responsiveness.
 
 ### 2. Strict Memory-Efficient Validation
 
-Every piece of data passes through a **C++ Validation Layer** before it ever touches the database:
+Every piece of data passes through a **C++ Validation Layer** before being processed:
 
 - **Pass-by-Reference:** All string inputs are handled via `const std::string&` to prevent unnecessary memory copies.
-- **Automatic Sanitization:** Built-in utils capitalize names, round currency to exactly two decimal places, and validate date ranges against a leap-year-aware calendar.
+- **Automatic Sanitization:** Built-in utilities handle currency rounding, name capitalization, and date validation (including leap-year logic).
 
-### 3. Hierarchical Financial Models
+### 3. Modular "Headless" Design
 
-The system uses a clean inheritance structure to maintain data integrity:
-
-- **Transaction (Base):** Handles core metadata (Date, Category, Description).
-- **Expense & Income (Derived):** Specialized models for tax rates, payment frequencies, and budget allocations.
-
-### 4. Headless-Ready Design
-
-The C++ core is "Silent"; it contains no `std::cout` or UI dependencies. This means the engine can be ported to a CLI, a mobile app, or a desktop interface without changing a single line of logic code.
-
----
+The C++ core is entirely decoupled from the TUI. The logic is built using functions and classes that return data, allowing the engine to be portable and easily integrated into different environments in the future.
 
 ## 🏗️ Technical Architecture
 
-LedgerCore follows a modular design to separate concerns:
+Flux follows a modular design to separate concerns:
 
-- **The Engine (C++):** The source of truth for all business rules and math.
-- **The Translator (extern "C"):** A thin wrapper that prevents C++ name mangling so JavaScript can invoke native methods.
-- **The Persistence (SQLite):** Ensures financial records are reliable, relational, and ACID-compliant.
-- **The View (Node/EJS):** A responsive interface for real-time visualization of the engine's output.
-
----
-
-## 📋 Data Flow: The Path of a "Click"
-
-1.  **UI:** User clicks "Add Expense" on the dashboard.
-2.  **Browser:** Sends form data to the Node.js server.
-3.  **Bridge:** Node.js triggers the bridge, converting JS types to C++ types.
-4.  **Engine:** The C++ core validates the data and instantiates an `Expense` object.
-5.  **Database:** The engine commits the validated record to the local ledger.
-6.  **Response:** The UI refreshes with the new calculation sent back from the engine.
-
----
+- **The Core Engine:** The source of truth for all business rules, mathematical calculations, and data models.
+- **The TUI Controller:** Manages the terminal state, user input loops, and data display.
+- **The Persistence Layer:** Manages how financial records are stored and retrieved (Local file system/SQLite).
 
 ## 📈 Roadmap
 
 - [x] **Milestone 1:** Core Inheritance & Memory-Efficient Setters
-- [x] **Milestone 2:** Native Bridge Implementation & Type Conversion
-- [x] **Milestone 3:** SQLite Integration & Persistence Layer
-- [x] **Milestone 4:** Full Dynamic Reporting & Analytics Dashboard
-
----
+- [x] **Milestone 2:** Refactoring Engine for "Headless" Logic
+- [ ] **Milestone 3:** ANSI-based TUI Menu Implementation
+- [ ] **Milestone 4:** Local Persistence Layer (File I/O or SQLite)
 
 ## 💡 Pro-Tips
 
 **Optimizing the Build**
-If you make changes to the C++ logic, you don't need to restart the Node server. Just run `make` in the root directory to recompile the binary, and the bridge will automatically pick up the new logic on the next request.
+
+- When modifying the core engine or the UI logic, simply run `make` to recompile. The build system is configured to only recompile the changed modules, keeping your development cycle fast.
