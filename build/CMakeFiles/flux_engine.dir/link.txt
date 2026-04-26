@@ -1,0 +1,3 @@
+C:\mingw64\bin\cmake.exe -E rm -f CMakeFiles\flux_engine.dir/objects.a
+C:\mingw64\bin\ar.exe qc CMakeFiles\flux_engine.dir/objects.a @CMakeFiles\flux_engine.dir\objects1.rsp
+C:\mingw64\bin\c++.exe -Wl,--whole-archive CMakeFiles\flux_engine.dir/objects.a -Wl,--no-whole-archive -o flux_engine.exe -Wl,--out-implib,libflux_engine.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\flux_engine.dir\linkLibs.rsp

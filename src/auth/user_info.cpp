@@ -1,182 +1,196 @@
-#include "../header_files/user_info.h"
+/**
+ - @file user_info.cpp
+ - @brief Implementation of the UserInfo class for managing profile and auth data.
+ - @details Refactored to remove namespace std and prepare for TUI integration.
+ */
+
+#include "../../include/auth/user_info.h"
+#include "../../include/utils/datetime.h"
+#include "../../include/utils/text_utils.h"
 #include <algorithm>
 #include <cctype>
 #include <iostream>
+#include <map>
 #include <string>
-using namespace std;
 
-// SETTERS & GETTERS
-void UserInfo::setFirstName(const string firstName) {
-  string capitalizedFirstName =
-      capitalizeFirstLetter(firstName); // capitalizing first letter of the name
-  FirstName = capitalizedFirstName;
-}
-string UserInfo::getFirstName() const { return FirstName; }
-void UserInfo::setLastName(const string lastName) {
-  string capitalizedLastName = capitalizeFirstLetter(lastName);
-  LastName = capitalizedLastName;
-}
-string UserInfo::getLastName() const { return LastName; }
-void UserInfo::setBirthDay(const int birthDay) { BirthDay = birthDay; }
-int UserInfo::getBirthDay() const { return BirthDay; }
-void UserInfo::setBirthMonth(const string birthMonth) {
-  // capitalizing first letter of the name
-  string capitalizedBirthMonth = birthMonth;
-  if (!birthMonth.empty()) {
-    if (islower(capitalizedBirthMonth[0])) {
-      capitalizedBirthMonth[0] = toupper(capitalizedBirthMonth[0]);
-    }
-  }
-  BirthMonth = capitalizedBirthMonth;
+// --- Constructors ---
 
-  // getting birth month as a number
-  if (BirthMonth == "January") {
-    numericalBirthMonth = 1;
-  } else if (BirthMonth == "February") {
-    numericalBirthMonth = 2;
-  } else if (BirthMonth == "March") {
-    numericalBirthMonth = 3;
-  } else if (BirthMonth == "April") {
-    numericalBirthMonth = 4;
-  } else if (BirthMonth == "May") {
-    numericalBirthMonth = 5;
-  } else if (BirthMonth == "June") {
-    numericalBirthMonth = 6;
-  } else if (BirthMonth == "July") {
-    numericalBirthMonth = 7;
-  } else if (BirthMonth == "August") {
-    numericalBirthMonth = 8;
-  } else if (BirthMonth == "September") {
-    numericalBirthMonth = 9;
-  } else if (BirthMonth == "October") {
-    numericalBirthMonth = 10;
-  } else if (BirthMonth == "November") {
-    numericalBirthMonth = 11;
-  } else if (BirthMonth == "December") {
-    numericalBirthMonth = 12;
-  }
-}
-int UserInfo::getBirthMonth() const { return numericalBirthMonth; }
-void UserInfo::setBirthYear(const int birthYear) { BirthYear = birthYear; }
-int UserInfo::getBirthYear() const { return BirthYear; }
-int UserInfo::getAge() {
-  int age;
-  // get current date
-  int currentYear = getCurrentYear();
-  int currentMonth = getCurrentMonth();
-  int currentDay = getCurrentDay();
-
-  // if birthday has not yet occured
-  if ((numericalBirthMonth > currentMonth) ||
-      (numericalBirthMonth == currentMonth && BirthDay > currentDay)) {
-    age = currentYear - BirthYear;
-    age--;
-    return age;
-  } else {
-    age = currentYear - BirthYear;
-    return age;
-  }
-}
-string UserInfo::getUsername() {
-  string username;
-  // reset first letter of first name to small
-  string smallFirstName = getFirstName();
-  if (!getFirstName().empty()) {
-    if (isupper(smallFirstName[0])) {
-      smallFirstName[0] = tolower(smallFirstName[0]);
-    }
-  }
-
-  // reset first letter of last name to small
-  string smallLastName = getLastName();
-  if (!getLastName().empty()) {
-    if (isupper(smallLastName[0])) {
-      smallLastName[0] = tolower(smallLastName[0]);
-    }
-  }
-
-  // print small-lettered username
-  username = smallFirstName + "." + smallLastName;
-  Username = username;
-  return Username;
-}
-void UserInfo::setPassword(const string password) { Password = password; }
-string UserInfo::getPassword() const { return Password; }
-
-// CONSTRUCTORS
-// default constructor
+/**
+ - @brief Default constructor for UserInfo.
+ - @details Initializes all strings to empty and numerical values to zero.
+ */
 UserInfo::UserInfo() {
-  FirstName = "";
-  LastName = "";
-  BirthDay = 0;
-  BirthMonth = "";
-  BirthYear = 0;
-  Password = "";
-  Username = "";
+    FirstName = "";
+    LastName = "";
+    BirthDay = 0;
+    BirthMonth = "";
+    numericalBirthMonth = 0;
+    BirthYear = 0;
+    Age = 0;
+    Password = "";
+    Username = "";
 }
 
-// user info constructor
-UserInfo::UserInfo(const string cFirstName, const string cLastName,
-                   const int cBirthDay, const string cBirthMonth,
-                   const int cBirthYear, const string cUsername,
-                   const string cPassword) {
-  FirstName = cFirstName;
-  LastName = cLastName;
-  BirthDay = cBirthDay;
-  BirthMonth = cBirthMonth;
-  BirthYear = cBirthYear;
-  Password = cPassword;
-  Username = cUsername;
+/**
+ - @brief Parameterized constructor for UserInfo.
+ - @param cFirstName First name of the user.
+ - @param cLastName Last name of the user.
+ - @param cBirthDay Day of birth.
+ - @param cBirthMonth Month of birth as a string.
+ - @param cBirthYear Year of birth.
+ - @param cUsername Chosen username.
+ - @param cPassword User password.
+ */
+UserInfo::UserInfo(const std::string cFirstName, const std::string cLastName,
+                   const int cBirthDay, const std::string cBirthMonth,
+                   const int cBirthYear, const std::string cUsername,
+                   const std::string cPassword) {
+    FirstName = cFirstName;
+    LastName = cLastName;
+    BirthDay = cBirthDay;
+    BirthMonth = cBirthMonth;
+    BirthYear = cBirthYear;
+    Username = cUsername;
+    Password = cPassword;
 }
 
-// METHODS
-// print date of log in
+// --- Setters ---
+
+void UserInfo::setFirstName(const std::string firstName) {
+    FirstName = capitalizeFirstLetter(firstName);
+}
+
+void UserInfo::setLastName(const std::string lastName) {
+    LastName = capitalizeFirstLetter(lastName);
+}
+
+void UserInfo::setBirthDay(const int birthDay) {
+    BirthDay = birthDay;
+}
+
+void UserInfo::setBirthMonth(const std::string birthMonth) {
+    std::string capitalizedBirthMonth = birthMonth;
+    if (!birthMonth.empty()) {
+        if (std::islower(static_cast<unsigned char>(capitalizedBirthMonth[0]))) {
+            capitalizedBirthMonth[0] = std::toupper(static_cast<unsigned char>(capitalizedBirthMonth[0]));
+        }
+    }
+    BirthMonth = capitalizedBirthMonth;
+
+    // Mapping month string to numerical value for age calculations
+    std::map<std::string, int> months = {
+        {"January", 1}, {"February", 2}, {"March", 3}, {"April", 4},
+        {"May", 5}, {"June", 6}, {"July", 7}, {"August", 8},
+        {"September", 9}, {"October", 10}, {"November", 11}, {"December", 12}
+    };
+
+    if (months.find(BirthMonth) != months.end()) {
+        numericalBirthMonth = months[BirthMonth];
+    }
+}
+
+void UserInfo::setBirthYear(const int birthYear) {
+    BirthYear = birthYear;
+}
+
+void UserInfo::setPassword(const std::string password) {
+    Password = password;
+}
+
+void UserInfo::setUsername(const std::string username) {
+    Username = username;
+}
+
+void UserInfo::setAge() {
+    tm* timePtr = getCurrentDateAndTime();
+    int currentYear = getCurrentYear(*timePtr);
+    int currentMonth = getCurrentMonth(*timePtr);
+    int currentDay = getCurrentDay(*timePtr);
+
+    Age = currentYear - BirthYear;
+
+    // Adjustment if the birthday hasn't occurred yet in the current year
+    if (numericalBirthMonth > currentMonth || 
+       (numericalBirthMonth == currentMonth && BirthDay > currentDay)) {
+        Age--;
+    }
+}
+
+// --- Getters ---
+
+std::string UserInfo::getFirstName() const {
+    return FirstName;
+}
+
+std::string UserInfo::getLastName() const {
+    return LastName;
+}
+
+int UserInfo::getBirthDay() const {
+    return BirthDay;
+}
+
+std::string UserInfo::getBirthMonth() const {
+    return BirthMonth;
+}
+
+int UserInfo::getBirthYear() const {
+    return BirthYear;
+}
+
+int UserInfo::getAge() const {
+    return Age;
+}
+
+std::string UserInfo::getUsername() const {
+    return Username;
+}
+
+std::string UserInfo::getPassword() const {
+    return Password;
+}
+
+// --- Display Methods ---
+
+/**
+ - @brief Prints the current system date.
+ */
 void UserInfo::getCurrentDate() {
-  // current date
-  int currentYear = getCurrentYear();
-  int currentMonth = getCurrentMonth();
-  int currentDay = getCurrentDay();
-
-  // print date info
-  cout << currentDay << "/" << currentMonth << "/" << currentYear;
+    tm* timePtr = getCurrentDateAndTime();
+    std::cout << getCurrentDay(*timePtr) << "/" 
+              << getCurrentMonth(*timePtr) << "/" 
+              << getCurrentYear(*timePtr);
 }
 
-// print time of log in
+/**
+ - @brief Prints the current system time.
+ */
 void UserInfo::getCurrentTime() {
-  int currentHour = getCurrentHour();
-  int currentMinute = getCurrentMinute();
-  int currentSecond = getCurrentSecond();
-
-  // print time info
-  cout << currentHour << ":" << currentMinute << ":" << currentSecond << endl;
+    tm* timePtr = getCurrentDateAndTime();
+    std::cout << getCurrentHour(*timePtr) << ":" 
+              << getCurrentMinute(*timePtr) << ":" 
+              << getCurrentSecond(*timePtr) << std::endl;
 }
 
-// user profile
+/**
+ - @brief Displays the formatted user profile to the console.
+ */
 void UserInfo::displayUserProfile() {
-  cout << "---------------------------------------" << endl;
-  cout << "Welcome, " << getFirstName() << "!" << endl;
+    std::cout << "---------------------------------------" << std::endl;
+    std::cout << "Welcome, " << getFirstName() << "!" << std::endl;
 
-  // display date and time
-  cout << "Last log in on ";
-  getCurrentDate();
-  cout << " at ";
-  getCurrentTime();
-  cout << endl;
+    std::cout << "Last log in on ";
+    getCurrentDate();
+    std::cout << " at ";
+    getCurrentTime();
+    std::cout << std::endl;
 
-  // display personal info
-  cout << "< YOUR INFO >" << endl;
-  cout << "- First Name: " << getFirstName() << endl;
-  cout << "- Last Name: " << getLastName() << endl;
+    std::cout << "< YOUR INFO >" << std::endl;
+    std::cout << "- Name: " << getFirstName() << " " << getLastName() << std::endl;
+    std::cout << "- Birth Date: " << getBirthDay() << "/" << getBirthMonth() << "/" << getBirthYear() << std::endl;
+    std::cout << "- Age: " << getAge() << " years" << std::endl << std::endl;
 
-  cout << "- Birth Date: " << getBirthDay() << "/" << getBirthMonth() << "/"
-       << getBirthYear() << endl;
-  cout << "- Age: " << getAge() << " years" << endl << endl;
-
-  // display username
-  cout << "< LOGIN INFO >" << endl;
-  cout << "- Username: " << getUsername() << endl;
-
-  // hide password as stars
-  string hiddenPassword(Password.size(), '*');
-  cout << "- Password: " << hiddenPassword << endl;
+    std::cout << "< LOGIN INFO >" << std::endl;
+    std::cout << "- Username: " << getUsername() << std::endl;
+    std::cout << "---------------------------------------" << std::endl;
 }

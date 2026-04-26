@@ -1,103 +1,80 @@
-// File Imports
+/**
+ - @file validation.cpp
+ - @brief Implementation of validation logic using explicit std:: scoping.
+ */
+
 #include "../../include/validation/validation.h"
+#include "../../include/models/classes.h"
 #include "../../include/utils/datetime.h"
-
-// Library Imports
 #include <string>
-#include <vector>
+#include <algorithm>
 #include <cctype>
-#include <cmath>
 
-// --- Check user name input ---
+// Name Validation
 bool checkNameInput(std::string name) {
-  bool goodInput = true;
-
-  if (name.empty()) {
-    goodInput = false;
-  }
-
-  for (char c : name) {
-    // If it's invalid input (not a letter AND not a space)
-    if (!std::isalpha(static_cast<unsigned char>(c)) && !std::isspace (static_cast<unsigned char>(c))) {
-      goodInput = false;
-      break;
-    }
-  }
-  return goodInput;
+    if (name.empty()) return false;
+    
+    // Using std::all_of and explicit std::isalpha
+    return std::all_of(name.begin(), name.end(), [](char c) {
+        return std::isalpha(static_cast<unsigned char>(c)) || std::isspace(static_cast<unsigned char>(c));
+    });
 }
 
-// --- Map month info together ---
+// Map Month Info (Handling Leap Years)
 MonthInfo mapMonthInfo(int month, int year) {
-  // February days (leap years)
-  int febDays =
-      ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) ? 29 : 28;
+    MonthInfo info;
+    info.monthNum = month;
 
-  // Vector storing structs of month data (name, numerical value, max days)
-  std::vector<MonthInfo> calendar = {
-      {"January", 1, 31},  {"February", 2, febDays}, {"March", 3, 31},
-      {"April", 4, 30},    {"May", 5, 31},           {"June", 6, 30},
-      {"July", 7, 31},     {"August", 8, 31},        {"September", 9, 30},
-      {"October", 10, 31}, {"November", 11, 30},     {"December", 12, 31}};
-
-  for (const auto &m : calendar) {
-    if (m.monthNum == month) {
-      return m;
+    switch (month) {
+        case 1:  info.name = "January";   info.maxDays = 31; break;
+        case 2: 
+            info.name = "February";
+            // Leap year logic
+            info.maxDays = ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) ? 29 : 28;
+            break;
+        case 3:  info.name = "March";     info.maxDays = 31; break;
+        case 4:  info.name = "April";     info.maxDays = 30; break;
+        case 5:  info.name = "May";       info.maxDays = 31; break;
+        case 6:  info.name = "June";      info.maxDays = 30; break;
+        case 7:  info.name = "July";      info.maxDays = 31; break;
+        case 8:  info.name = "August";    info.maxDays = 31; break;
+        case 9:  info.name = "September"; info.maxDays = 30; break;
+        case 10: info.name = "October";   info.maxDays = 31; break;
+        case 11: info.name = "November";  info.maxDays = 30; break;
+        case 12: info.name = "December";  info.maxDays = 31; break;
+        default: info.name = "Invalid";   info.maxDays = 0;  break;
     }
-  }
-  return {"", 0, 0};
+    return info;
 }
 
-// --- Check day input ---
-bool checkDayInput(int day, const MonthInfo &monthStruct) {
-  if (day >= 1 && day <= monthStruct.maxDays) {
-    return true; // day is valid
-  }
-  return false; // day is invalid
-}
-
-// -- Check month integer input ---
-bool checkNumMonthInput(int month) {
-  if (month >= 1 && month <= 12) {
-    return true;
-  }
-  return false;
-}
-
-// --- Check year input ---
+// Year Input (2005 friendly!)
 bool checkYearInput(int year) {
-  tm* timeNowPtr = getCurrentDateAndTime();
-  int currentYear = getCurrentYear(*timeNowPtr);
-  return (year <= currentYear && year >= 2020);
+    tm* timePtr = getCurrentDateAndTime();
+    int currentYear = getCurrentYear(*timePtr);
+    
+    return (year >= 1900 && year <= currentYear);
 }
 
-// --- Check source input is a valid source ---
+// Password Strength (Mechanical 8-char rule)
+bool checkPasswordStrength(std::string pass) {
+    return (pass.length() >= 8);
+}
+
+// Day Input Validation
+bool checkDayInput(int day, const MonthInfo &monthStruct) {
+    return (day >= 1 && day <= monthStruct.maxDays);
+}
+
+// Month Number Validation
+bool checkNumMonthInput(int month) {
+    return (month >= 1 && month <= 12);
+}
+
+/**
+ - @brief Validates if the income/expense source string is not empty.
+ - @param source The string to check.
+ - @return true if valid, false otherwise.
+ */
 bool checkSourceInput(std::string source) {
-  if (!source.empty() && source.length() <= 50) {
-    bool hasContent = false;
-    for (char c : source) {
-      if (!std::isspace(c)) {
-        hasContent = true;
-        break;
-      }
-    }
-    if (!hasContent) {
-      return false;
-    }
-    for (char c : source) {
-      if (!std::isalnum(c) && c != '&' && c != '.' && c != '-') {
-        return false;
-      }
-    }
-  }
-  return true;
-}
-
-// --- Check gross amount is a valid monetary amount ---
-bool checkGrossAmount(double amount) {
-  if (std::isfinite(amount)) {
-    if (amount > 0.0 && amount <= 1000000) {
-      return true;
-    }
-  }
-  return false;
+    return !source.empty();
 }

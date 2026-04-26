@@ -1,50 +1,57 @@
+/**
+ - @file user_info.h
+ - @brief Header for the UserInfo class managing profile and authentication data.
+ */
+
 #ifndef USER_INFO_H
 #define USER_INFO_H
 
 #include <string>
-using namespace std;
 
 class UserInfo {
 private:
-	//VARIABLES
-	string FirstName;
-	string LastName;
-	int BirthDay;
-	string BirthMonth;
-	int BirthYear;
-	int Age;
-	string Username;
-	string Password;
-	int numericalBirthMonth;
+    std::string FirstName;
+    std::string LastName;
+    int BirthDay;
+    std::string BirthMonth;
+    int BirthYear;
+    int Age;
+    std::string Username;
+    std::string Password;
+    int numericalBirthMonth;
 
 public:
-	//SETTERS
-	void setFirstName(const string firstName);
-	void setLastName(const string lastName);
-	void setBirthDay(const int birthDay);
-	void setBirthMonth(const string birthMonth);
-	void setBirthYear(const int birthYear);
-	void setAge();
-	void setPassword(const string password);
-
-	//GETTERS
-	string getFirstName() const;
-	string getLastName() const;
-	int getBirthDay() const;
-	int getBirthMonth() const;
-	int getBirthYear() const;
-	int getAge();
-	string getUsername();
-	string getPassword() const;
-
-	//CONSTRUCTORS
-	UserInfo();
-	UserInfo(const string cFirstName, const string cLastName, const int cBirthDay, const string cBirthMonth, const int cBirthYear, const string cUsername, const string cPassword);
-
-	//METHODS
+    // Setters
+    void setFirstName(const std::string firstName);
+    void setLastName(const std::string lastName);
+    void setBirthDay(const int birthDay);
+    void setBirthMonth(const std::string birthMonth);
+    void setBirthYear(const int birthYear);
+    void setAge();
+    void setPassword(const std::string password);
+    void setUsername(const std::string username);
 	void getCurrentDate();
-	void getCurrentTime();
-	void displayUserProfile();
+    void getCurrentTime();
+
+    // Getters
+    std::string getFirstName() const;
+    std::string getLastName() const;
+    int getBirthDay() const;
+    std::string getBirthMonth() const;
+    int getBirthYear() const;
+    int getAge() const;
+    std::string getUsername() const;
+    std::string getPassword() const;
+
+    // Constructors
+    UserInfo();
+    UserInfo(const std::string cFirstName, const std::string cLastName, 
+             int cBirthDay, const std::string cBirthMonth, 
+             int cBirthYear, const std::string cUsername, 
+             const std::string cPassword);
+
+    // Methods
+    void displayUserProfile();
 };
 
 #endif

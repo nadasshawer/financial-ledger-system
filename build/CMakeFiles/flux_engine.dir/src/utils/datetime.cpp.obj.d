@@ -1,0 +1,20 @@
+CMakeFiles/flux_engine.dir/src/utils/datetime.cpp.obj: \
+ C:\Users\nadas\Desktop\programming\C++\finance_tracker_refined\src\utils\datetime.cpp \
+ C:/Users/nadas/Desktop/programming/C++/finance_tracker_refined/include/utils/datetime.h \
+ C:/mingw64/include/c++/14.2.0/ctime \
+ C:/mingw64/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++config.h \
+ C:/mingw64/include/c++/14.2.0/x86_64-w64-mingw32/bits/os_defines.h \
+ C:/mingw64/include/c++/14.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
+ C:/mingw64/include/c++/14.2.0/pstl/pstl_config.h \
+ C:/mingw64/x86_64-w64-mingw32/include/time.h \
+ C:/mingw64/x86_64-w64-mingw32/include/crtdefs.h \
+ C:/mingw64/x86_64-w64-mingw32/include/corecrt.h \
+ C:/mingw64/x86_64-w64-mingw32/include/_mingw.h \
+ C:/mingw64/x86_64-w64-mingw32/include/_mingw_mac.h \
+ C:/mingw64/x86_64-w64-mingw32/include/_mingw_secapi.h \
+ C:/mingw64/x86_64-w64-mingw32/include/vadefs.h \
+ C:/mingw64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+ C:/mingw64/x86_64-w64-mingw32/include/sys/timeb.h \
+ C:/mingw64/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
+ C:/mingw64/x86_64-w64-mingw32/include/_timeval.h \
+ C:/mingw64/x86_64-w64-mingw32/include/pthread_time.h

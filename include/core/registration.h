@@ -1,14 +1,13 @@
+/**
+ - @file registration.h
+ - @brief Logic for new user account creation.
+ */
+
 #ifndef REGISTRATION_H
 #define REGISTRATION_H
 
 /**
- - @file registration.h
- - @brief logic for new user account creation.
- - @details handles the collection of user personal data and password setup.
- */
-
-/**
- - @brief launches the registration sequence.
+ - @brief Launches the registration sequence.
  */
 void registerUser();
 

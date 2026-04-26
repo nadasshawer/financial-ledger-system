@@ -1,0 +1,3 @@
+C:/Users/nadas/Desktop/programming/C++/finance_tracker_refined/build/_deps/ftxui-subbuild/CMakeFiles/ftxui-populate.dir
+C:/Users/nadas/Desktop/programming/C++/finance_tracker_refined/build/_deps/ftxui-subbuild/CMakeFiles/edit_cache.dir
+C:/Users/nadas/Desktop/programming/C++/finance_tracker_refined/build/_deps/ftxui-subbuild/CMakeFiles/rebuild_cache.dir
