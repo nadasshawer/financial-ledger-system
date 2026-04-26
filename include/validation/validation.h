@@ -62,4 +62,11 @@ bool checkSourceInput(std::string source);
 **/
 bool checkGrossAmount(double amount);
 
+/**
+ - @brief Validates password and returns specific missing requirements.
+ - @param pw The password string to check.
+ - @return std::string "VALID" or a specific error message.
+**/
+std::string getPasswordFeedback(const std::string& pw);
+
 #endif

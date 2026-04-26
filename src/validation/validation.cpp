@@ -9,6 +9,7 @@
 #include <string>
 #include <algorithm>
 #include <cctype>
+#include <regex>
 
 // Name Validation
 bool checkNameInput(std::string name) {
@@ -70,11 +71,27 @@ bool checkNumMonthInput(int month) {
     return (month >= 1 && month <= 12);
 }
 
-/**
- - @brief Validates if the income/expense source string is not empty.
- - @param source The string to check.
- - @return true if valid, false otherwise.
- */
 bool checkSourceInput(std::string source) {
     return !source.empty();
+}
+
+std::string getPasswordFeedback(const std::string& pw) {
+    if (pw.length() < 8) return "Password must be at least 8 characters!";
+    
+    bool hasUpper = false, hasLower = false, hasDigit = false, hasSpecial = false;
+    std::string specialChars = "@$!%*?&";
+
+    for (char c : pw) {
+        if (isupper(c)) hasUpper = true;
+        else if (islower(c)) hasLower = true;
+        else if (isdigit(c)) hasDigit = true;
+        else if (specialChars.find(c) != std::string::npos) hasSpecial = true;
+    }
+
+    if (!hasUpper) return "Missing an UPPERCASE letter!";
+    if (!hasLower) return "Missing a lowercase letter!";
+    if (!hasDigit) return "Missing a NUMBER!";
+    if (!hasSpecial) return "Missing a SPECIAL character (@$!%*?&)!";
+    
+    return "VALID";
 }

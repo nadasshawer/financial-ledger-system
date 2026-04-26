@@ -21,17 +21,15 @@ int main() {
     auto screen = ScreenInteractive::TerminalOutput();
 
     // Start with the registration sequence
-    // Note: Future updates will move the UI logic inside registerUser to use FTXUI components
     registerUser();
 
     // Loop for authentication
     bool authenticated = false;
-    while (!authenticated) {
-        authenticated = loginUser();
-    }
+    authenticated = loginUser(); 
 
-    // Launch the main tracker selection menu
-    chooseTracker();
+    if (authenticated) {
+        chooseTracker();
+    }
 
     return 0;
 }
