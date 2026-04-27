@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/Platform-Cross--Platform-ce9ffc?style=for-the-badge&logo=target&logoColor=white" />
 </p>
 
-**Flux** is a high-performance financial tracking engine powered by **C++20**. Designed with a "Systems-First" philosophy, it treats personal finance with the precision of a low-level engine. By utilizing a **Unified Frame Architecture**, Flux provides a seamless, single-page GUI experience directly inside the terminal, delivering extreme memory efficiency without the bloat of traditional frameworks.
+**Flux** is a high-performance financial tracking engine powered by **C++20**. Designed with a "Systems-First" philosophy, it treats personal finance with the precision of a low-level engine. By utilizing a **Unified Frame Architecture**, Flux provides a seamless, single-page GUI experience directly inside the terminal via the **FTXUI library**, delivering extreme memory efficiency without the bloat of traditional frameworks.
 
 ---
 
@@ -144,12 +144,12 @@ make
 
 ## 📈 Project Roadmap
 
-- [x] Milestone 1: Build the core C++ classes (Transaction, User, etc.) to hold all the data
-- [x] Milestone 2: Create the "Helper" functions and validation logic to make sure the inputs are correct
-- [x] Milestone 3: Write all the Setters and Getters to move data safely between the classes
-- [x] Milestone 4: Install the FTXUI library and get the CMake build system to actually recognize it
-- [x] Milestone 5: Build the actual TUI screens and connect the buttons to the  C++ logic
-- [x] Milestone 6: Fix the focus bugs and navigation so the Mouse and Escape keys work perfectly
+- [x] **Milestone 1:** Build the core C++ classes (Transaction, User, etc.) to hold all the data
+- [x] **Milestone 2:** Create the "Helper" functions and validation logic to make sure the inputs are correct
+- [x] **Milestone 3:** Write all the Setters and Getters to move data safely between the classes
+- [x] **Milestone 4:** Install the FTXUI library and get the CMake build system to actually recognize it
+- [x] **Milestone 5:** Build the actual TUI screens and connect the buttons to the  C++ logic
+- [x] **Milestone 6:** Fix the focus bugs and navigation so the Mouse and Escape keys work perfectly
 
 ---
 
