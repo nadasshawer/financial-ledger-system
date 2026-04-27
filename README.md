@@ -2,8 +2,8 @@
 
 <p align="left">
   <img src="https://img.shields.io/badge/Language-C%2B%2B20-4facfe?style=for-the-badge&logo=cplusplus&logoColor=white" />
-  <img src="https://img.shields.io/badge/Interface-FTXUI-52b788?style=for-the-badge&logo=gnometerminal&logoColor=white" />
-  <img src="https://img.shields.io/badge/Architecture-Unified_Frame-ce9ffc?style=for-the-badge&logo=target&logoColor=white" />
+  <img src="https://img.shields.io/badge/Interface-TUI-52b788?style=for-the-badge&logo=gnometerminal&logoColor=white" />
+  <img src="https://img.shields.io/badge/Platform-Cross--Platform-ce9ffc?style=for-the-badge&logo=target&logoColor=white" />
 </p>
 
 **Flux** is a high-performance financial tracking engine powered by **C++20**. Designed with a "Systems-First" philosophy, it treats personal finance with the precision of a low-level engine. By utilizing a **Unified Frame Architecture**, Flux provides a seamless, single-page GUI experience directly inside the terminal, delivering extreme memory efficiency without the bloat of traditional frameworks.
