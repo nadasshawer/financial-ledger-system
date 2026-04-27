@@ -10,22 +10,52 @@
 
 ---
 
-## ✨ My Inspiration
+## 🖼️ System Storyboard
 
-Flux isn't just a project to me, it’s actually my very first 'Deep Dive' into the world of programming! I built this as my first complete C++ project because I was tired of just scratching the surface. I wanted to dive deep, break things, and understand what’s actually happening under the hood of a computer.
+## 🖼️ System Storyboard
 
-This project became the foundation of everything I know today. It’s what inspired me to keep exploring, keep building, and eventually dive head-first into the world of Systems and Software Engineering. It’s definitely come a long way from my early experiments, and looking at this code always reminds me of how much I’ve leveled up since I first started typing `int main()`. It’s messy in the memories, but clean in the code!
+## 🖼️ System Storyboard
+
+<table style="width: 100%; border-collapse: collapse; border: none;">
+  <tr style="border: none;">
+    <td align="center" style="border-bottom: 1px solid #333; border-right: 1px solid #333; padding: 20px; width: 50%;">
+      <b>1. Onboarding & Security</b><br><br>
+      <img src="images/image.png" width="280"><br><br>
+      <sub style="color: #888;">Initial system registration where users define their first name, last name, and secure password to generate a unique system identity.</sub>
+    </td>
+    <td align="center" style="border-bottom: 1px solid #333; padding: 20px; width: 50%;">
+      <b>2. Access Control</b><br><br>
+      <img src="images/image-1.png" width="280"><br><br>
+      <sub style="color: #888;">The secure gateway in action; if a user enters credentials incorrectly, the system triggers real-time "Invalid Credentials" alerts to prevent unauthorized access.</sub>
+    </td>
+  </tr>
+  <tr style="border: none;">
+    <td align="center" style="border-bottom: 1px solid #333; border-right: 1px solid #333; padding: 20px;">
+      <b>3. Main Navigator</b><br><br>
+      <img src="images/image-6.png" width="280"><br><br>
+      <sub style="color: #888;">After authentication is successful, the user is granted access to the central hub to select between specialized tracking modules.</sub>
+    </td>
+    <td align="center" style="border-bottom: 1px solid #333; padding: 20px;">
+      <b>4. Revenue Tracker</b><br><br>
+      <img src="images/image-7.png" width="280"><br><br>
+      <sub style="color: #888;">A dedicated interface for logging income streams, allowing users to input sources and amounts directly into the persistent ledger.</sub>
+    </td>
+  </tr>
+  <tr style="border: none;">
+    <td align="center" style="border-right: 1px solid #333; padding: 20px;">
+      <b>5. Expense Tracker</b><br><br>
+      <img src="images/image-8.png" width="280"><br><br>
+      <sub style="color: #888;">High-precision expense logging module designed to categorize spending and maintain a real-time record of all financial outflows.</sub>
+    </td>
+    <td align="center" style="padding: 20px;">
+      <b>6. Financial Audit</b><br><br>
+      <img src="images/image-9.png" width="280"><br><br>
+      <sub style="color: #888;">The final comprehensive ledger view providing a full audit trail of transactions and a calculated net balance for total financial oversight.</sub>
+    </td>
+  </tr>
+</table>
 
 ---
-
-## 🖼️ Example Menu Screenshots
-
-Registration Menu: ![alt text](image.png)
-If password/usernae doesn't match: ![alt text](images/image-1.png)
-After entering valid crednetials yous houdl see the main tracker page: ![alt text](images/image-6.png)
-Income tracker menu: ![alt text](images/image-7.png)
-Expense tracker menu: ![alt text](images/image-8.png)
-budget/report menu: ![alt text](images/image-9.png)
 
 ## 🚀 Quick Start
 
