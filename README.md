@@ -1,13 +1,12 @@
-# ⚙️ Flux: Financial Management System
+# ⚙️ Flux: Financial Budget Tracker
 
 <p align="left">
-  <img src="https://img.shields.io/badge/Status-In%20Development-ffb347?style=for-the-badge&logo=git&logoColor=white" />
   <img src="https://img.shields.io/badge/Language-C%2B%2B20-4facfe?style=for-the-badge&logo=cplusplus&logoColor=white" />
-  <img src="https://img.shields.io/badge/Interface-TUI-52b788?style=for-the-badge&logo=gnometerminal&logoColor=white" />
-  <img src="https://img.shields.io/badge/Platform-Universal-ce9ffc?style=for-the-badge&logo=target&logoColor=white" />
+  <img src="https://img.shields.io/badge/Interface-FTXUI-52b788?style=for-the-badge&logo=gnometerminal&logoColor=white" />
+  <img src="https://img.shields.io/badge/Architecture-Unified_Frame-ce9ffc?style=for-the-badge&logo=target&logoColor=white" />
 </p>
 
-**Flux** is a high-performance financial system powered by a robust **C++ backend**. Designed with a "Systems-First" philosophy, Flux treats financial data with the precision of a low-level engine. By strictly decoupling the core logic from the interface, it provides a high-speed **Textual User Interface (TUI)** that delivers extreme memory efficiency and data integrity without the bloat of traditional graphical frameworks.
+**Flux** is a high-performance financial tracking engine powered by **C++20**. Designed with a "Systems-First" philosophy, it treats personal finance with the precision of a low-level engine. By utilizing a **Unified Frame Architecture**, Flux provides a seamless, single-page GUI experience directly inside the terminal, delivering extreme memory efficiency without the bloat of traditional frameworks.
 
 ---
 
@@ -19,25 +18,36 @@ This project became the foundation of everything I know today. It’s what inspi
 
 ---
 
+## 🖼️ Example Menu Screenshots
+
+Registration Menu: ![alt text](image.png)
+If password/usernae doesn't match: ![alt text](images/image-1.png)
+After entering valid crednetials yous houdl see the main tracker page: ![alt text](images/image-6.png)
+Income tracker menu: ![alt text](images/image-7.png)
+Expense tracker menu: ![alt text](images/image-8.png)
+budget/report menu: ![alt text](images/image-9.png)
+
 ## 🚀 Quick Start
 
 **Clone the repository:**
 
 ```bash
-git clone https://github.com/nadasshawer/financial-ledger-engine.git
-cd financial-ledger-engine
+git clone [https://github.com/nadasshawer/flux-budget-tracker.git](https://github.com/nadasshawer/flux-budget-tracker.git)
+cd flux-budget-tracker
 ```
 
 **Build the Engine:**
 
 ```bash
+mkdir build && cd build
+cmake ..
 make
 ```
 
 **Launch the TUI:**
 
 ```bash
-./bin/flux
+./flux_engine
 ```
 
 ---
@@ -47,22 +57,17 @@ make
 ```txt
 ├── include/                 # Blueprints: All Header Files (.h)
 │   ├── auth/                # registration.h, user_info.h
-│   ├── core/                # globals.h
-│   ├── models/              # classes.h (Transaction, Expense, Income)
-│   ├── utils/               # math_utils.h, datetime.h, text_utils.h
-│   └── validation/          # validation.h
+│   ├── core/                # menu_handler.h, navigation logic
+│   ├── models/              # report.h (Transaction history)
+│   └── validation/          # input validation & regex
 │
 ├── src/                     # The Engine: Core C++ Logic (.cpp)
-│   ├── auth/                # User authentication implementation
-│   ├── core/                # Main TUI Loop & State Management
-│   ├── models/              # Finance class logic & inheritance
-│   └── validation/          # Strict memory-efficient checks
+│   ├── auth/                # Secure login & registration logic
+│   ├── core/                # Unified Frame TUI & State Management
+│   ├── models/              # Accounting logic & data structures
+│   └── validation/          # Strict year & password checks
 │
-├── docs/                    # Technical Documentation
-│   └── architecture.md      # TUI design & data flow strategy
-│
-├── bin/                     # Compiled binaries
-├── Makefile                 # Automated build instructions
+├── CMakeLists.txt           # Modern build configuration
 └── README.md                # You're here!
 ```
 
@@ -70,43 +75,35 @@ make
 
 ## 🛠️ Key Features
 
-### 1. Terminal-Native Interface (TUI)
+### 1. Unified Frame Interface
 
-- Flux utilizes a professional terminal interface that provides real-time feedback and navigation.
-- By staying in the command line, Flux ensures low system resource usage and high responsiveness.
+Unlike standard terminal apps, Flux uses a **Single-Page Application (SPA)** approach. The main system border stays static while the internal content (Income, Expense, Ledger) swaps out dynamically, creating a true GUI feel.
 
-### 2. Strict Memory-Efficient Validation
+### 2. Precise Financial Ledger
 
-Every piece of data passes through a **C++ Validation Layer** before being processed:
+- **Real-Time Auditing:** Automatically calculates Net Position using high-precision doubles.
+- **Formatted Reporting:** Generates a structured accounting table with column alignment and 2-decimal point enforcement.
 
-- **Pass-by-Reference:** All string inputs are handled via `const std::string&` to prevent unnecessary memory copies.
-- **Automatic Sanitization:** Built-in utilities handle currency rounding, name capitalization, and date validation (including leap-year logic).
+### 3. Secure Gateway
 
-### 3. Modular "Headless" Design
+- **Strict Validation:** Validates birth years (1900-2026) and enforces password complexity.
+- **Identity Matching:** Cross-references session credentials to prevent unauthorized access.
 
-- The C++ core is entirely decoupled from the TUI.
-- The logic is built using functions and classes that return data, allowing the engine to be portable and easily integrated into different environments in the future.
+### 4. Interactive UX
 
----
-
-## 🏗️ Technical Architecture
-
-Flux follows a modular design to separate concerns:
-
-- **The Core Engine:** The source of truth for all business rules, mathematical calculations, and data models.
-- **The TUI Controller:** Manages the terminal state, user input loops, and data display.
-- **The Persistence Layer:** Manages how financial records are stored and retrieved (Local file system/SQLite).
+- **Mouse Support:** Full mouse integration for menu selection and button clicks.
+- **Global Hotkeys:** Quick emergency exit and navigation via keyboard interrupts (`Q` / `ESC`).
 
 ---
 
 ## 📈 Roadmap
 
-- [x] **Milestone 1:** Core Inheritance & Memory-Efficient Setters
-- [x] **Milestone 2:** Refactoring Engine for "Headless" Logic
-- [ ] **Milestone 3:** ANSI-based TUI Menu Implementation
-- [ ] **Milestone 4:** Local Persistence Layer (File I/O or SQLite)
+- [x] **Milestone 1:** Core Inheritance & Memory Management
+- [x] **Milestone 2:** Refactoring for "Headless" Logic
+- [x] **Milestone 3:** Unified Frame FTXUI Implementation
 
 ---
 
-## 💡 Pro-Tips
-When modifying the core engine or the UI logic, simply run `make` to recompile. The build system is configured to only recompile the changed modules, keeping your development cycle fast.
+## 💡 Pro-Tip
+
+For the smoothest mouse experience and best color rendering, run Flux in **Windows Terminal** or **VS Code's Integrated Terminal**.
