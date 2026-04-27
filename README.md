@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/Platform-Cross--Platform-ce9ffc?style=for-the-badge&logo=target&logoColor=white" />
 </p>
 
-**Flux** is a high-performance financial tracking engine powered by **C++20**. Designed with a "Systems-First" philosophy, it treats personal finance with the precision of a low-level engine. By utilizing a **Unified Frame Architecture**, Flux provides a seamless, single-page GUI experience directly inside the terminal via the **FTXUI library**, delivering extreme memory efficiency without the bloat of traditional frameworks.
+**Flux** is a budget tracker powered by **C++20**. Designed with a "Systems-First" philosophy, it treats personal finance with the precision of a low-level engine. By utilizing a **Unified Frame Architecture**, Flux provides a smooth, single-page GUI experience directly inside the terminal via the **FTXUI library**, delivering extreme memory efficiency without the bloat of traditional frameworks.
 
 ---
 
@@ -83,7 +83,7 @@ Unlike standard terminal apps, Flux uses a **Single-Page Application (SPA)** app
 - **Real-Time Auditing:** Automatically calculates Net Position using high-precision doubles.
 - **Formatted Reporting:** Generates a structured accounting table with column alignment and 2-decimal point enforcement.
 
-### 3. Secure Gateway
+### 3. Basic Validation
 
 - **Strict Validation:** Validates birth years (1900-2026) and enforces password complexity.
 - **Identity Matching:** Cross-references session credentials to prevent unauthorized access.
